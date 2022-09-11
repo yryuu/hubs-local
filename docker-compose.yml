@@ -1,0 +1,42 @@
+version: '3'
+services:
+  db:
+    image: postgres:11
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - volume_db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  ret:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      - "MIX_ENV=dev"
+      - "DB_HOST=db"
+    volumes:
+      - ./reticulum:/ret
+      - ./storage/dev:/storage/dev
+    tty: true
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+  dialog:
+    build:
+      context: ./dialog
+      dockerfile: Dockerfile
+    environment:
+      - "HTTPS_CERT_FULLCHAIN=/app/certs/cert.pem"
+      - "HTTPS_CERT_PRIVKEY=/app/certs/key.pem"
+      - "AUTH_KEY=/app/certs/perms.pub.pem"
+    tty: true
+    volumes:
+      - ./certs:/app/certs
+    ports:
+      - "4443:4443"
+volumes:
+  volume_db:
+    external: true
