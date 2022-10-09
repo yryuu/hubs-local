@@ -13,15 +13,14 @@ config :ret, RetWeb.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
-db_credentials = System.get_env("DB_CREDENTIALS") || "admin"
-db_host = System.get_env("DB_HOST") || "localhost"
+db_credentials = "admin"
 
 config :ret, Ret.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: db_credentials,
   password: db_credentials,
   database: "ret_test",
-  hostname: db_host,
+  hostname: "localhost",
   template: "template0",
   pool_size: 10,
   pool: Ecto.Adapters.SQL.Sandbox
@@ -31,7 +30,7 @@ config :ret, Ret.SessionLockRepo,
   username: db_credentials,
   password: db_credentials,
   database: "ret_test",
-  hostname: db_host,
+  hostname: "localhost",
   template: "template0",
   pool_size: 10,
   pool: Ecto.Adapters.SQL.Sandbox
@@ -42,7 +41,7 @@ config :ret, Ret.Locking,
     username: db_credentials,
     password: db_credentials,
     database: "ret_test",
-    hostname: db_host
+    hostname: "localhost"
   ]
 
 config :ret, Ret.Guardian,

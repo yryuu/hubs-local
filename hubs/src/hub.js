@@ -10,10 +10,9 @@ import "./utils/theme";
 import "@babel/polyfill";
 
 console.log(
-  `App version: ${
-    configs.IS_LOCAL_OR_CUSTOM_CLIENT
-      ? `Custom client or local client (undeploy custom client to run build ${process.env.BUILD_VERSION})`
-      : process.env.BUILD_VERSION || "?"
+  `App version: ${configs.IS_LOCAL_OR_CUSTOM_CLIENT
+    ? `Custom client or local client (undeploy custom client to run build ${process.env.BUILD_VERSION})`
+    : process.env.BUILD_VERSION || "?"
   }`
 );
 
@@ -670,7 +669,7 @@ function handleHubChannelJoined(entryManager, hubChannel, messageDispatch, data,
 
 async function runBotMode(scene, entryManager) {
   console.log("Running in bot mode...");
-  const noop = () => {};
+  const noop = () => { };
   const alwaysFalse = () => false;
   scene.renderer = {
     setAnimationLoop: noop,
@@ -1096,13 +1095,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("[reconnect] Reconnection successful.");
   };
 
-  const onRetDeploy = (function() {
+  const onRetDeploy = (function () {
     let pendingNotification = null;
-    const hasPendingNotification = function() {
+    const hasPendingNotification = function () {
       return !!pendingNotification;
     };
 
-    const handleNextMessage = (function() {
+    const handleNextMessage = (function () {
       let isLocked = false;
       return async function handleNextMessage() {
         if (isLocked || !pendingNotification) return;
@@ -1395,6 +1394,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       APP.mediaDevicesManager.micEnabled = false;
     }
   });
+
+  const myChannel = socket.channel(`my:test`, APP.hubChannelParamsForPermsToken(oauthFlowPermsToken));
+  myChannel.join().receive("ok", resp => {
+    myChannel.push("new_msg", { body: 'test' });
+  });
+
+  myChannel.on("new_msg", event => {
+    console.log(event);
+  });
+
 
   authChannel.setSocket(socket);
   linkChannel.setSocket(socket);

@@ -6,8 +6,6 @@ defmodule Ret.Account do
 
   import Canada, only: [can?: 2]
 
-  @type t :: %__MODULE__{}
-
   @schema_prefix "ret0"
   @primary_key {:account_id, :id, autogenerate: true}
   @account_preloads [:login, :identity]

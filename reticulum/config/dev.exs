@@ -12,7 +12,6 @@ link_host = "hubs-link.local"
 # host = cors_proxy_host = "192.168.1.27"
 
 dev_janus_host = "hubs.local"
-
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
@@ -179,6 +178,7 @@ config :ret, RetWeb.Email, from: "info@hubs-mail.com"
 
 # add yryuu
 config :ret, Ret.PermsToken, perms_key: "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEAsKd4W+n80K67Pzjd2/46oa9GnQbRc2eofcghzjTRLZYOXIXR\njEF026y5P3f5SvQsozXT4Ewksqjdafl3MenC7PPWawfLvfH7dr+XkJdIEQNnLtmm\n881t9x9MueY/Ctv4kIyy/ooaoZDV5j2hj/SZjyD5p2CJVYWoP1tRPsnIfy/ISoqH\n4ssqsg7fMX6vs8slpHOHua0sM/rna+RxGfX/mcKkNhSdSPeWuldVF9omxIbvXPTH\nTiNC4gRvIandcZpzOCEs7agsPbjwsYUyEbo24bMpWxE3f4k7/CGa/PiImO14HkZu\nTK9criqCEjV8q6Yv0y+SHfpr1gv5KsYLkF6ViwIDAQABAoIBAD7grS+SHqGswAtl\n01o9qGLqf2jfB2hbahazSI0cMaRXN+9o1khk+BJE7X8Q1hP+y3CgdTTuBVXuUzko\nSWvjt7UdqaFZGgUW/5mp4mnd3xHnMy/y2sEGyvBeHLJCqQfVeikBW6jMQWRmqCwW\nnc4ekxXl99bCvr9JHrTGbSm7KvlR0b21AJgsNN0Uc7qTAQwhasjW5YHpQRLxZuiZ\nGeTzFIJx3qfxlXWdDEE5qtlFkxRa+Mi/44aKa2CUMJ0/DbqB7k4i4eZ/Av5AaKn9\n0pRFhna7E6J+BaoF/obMRcAFkbtxoVIcgIp5CKJyzh2eSuHxsJssag5uLsOrj0Ca\nCOra2PkCgYEA502GmyCetAXDjcB1ugySl7iUk44Z6YeCnB03H5JgHawyoQAb2cBc\nup+PHchHdeixEdWnF8fhqcqPCoK4xyyNkZ6yOvM6bBEk35xbi3QfWiaqLEmbEWbj\nBz/8+DQBXjG8mG36EEDYm0igxl25J/3+wzyX05APeZYohZhPRO0Esk0CgYEAw4Qr\nAFtbTUvenmTP/A+Pe8zAQSs0aKdqnFeknED59s53x6pt9H/PEQUsoY4DQzE3Oo/H\nf6CeDB1KbRacPn7pP9jJXOtwSpdo6pGvF+dGZSaRQPXrZc1eWbtgigYGCeWRdk3k\nitVEkG88DNhbRTZ6BFrWPbduauSRH08RJbBK4zcCgYAP4rYs70eXC5JLqP0s4vIq\nc2XY4HiNHl5tBGClzXLGdu4fOpevE9QKiSzWGcw2n92RYQAR1Qt9ksjSKvovy7KJ\nXsHU5KGNjHvg06dB457HnUIwunlo740GEXH5RfEWHApc2ajD9wApYgqQtR0jTwFx\nPTccM5esfRCZZEWFcVXSPQKBgQCFNcvGlngCliq7aJx8dG2iP8LNpA41L7vngZ9a\nBrtIeSwLEgeQinQeeJQMDqISabnjYIrgXiLQxjQrVzhlLDrnkWDAunjrmXWWPGQ7\nuQuxZzGYPPWBiwc5w/zmjWwX2h3dqPyJyvzIG8GiTtcAtTk1Nl659fx5P/nQhyJ7\ntz2OyQKBgAa/nq27NP5eJ1XAJBgimrBzxBXEPZkepiAzearp8HOAkkzFSFJJhlGX\nfJn17sAheVEAmfnzQhzxBwY04haZ9QsaweLiLYNDMng9fyIyj/ivbPeJ/yuhzPWB\nMcyI9hgTdULDK3RUUGLcu5oR5ynuvdBEwq9aqJfzHM4lRsKO9yuN\n-----END RSA PRIVATE KEY-----"
+
 config :ret, Ret.OAuthToken, oauth_token_key: ""
 
 config :ret, Ret.Guardian,
@@ -204,6 +204,7 @@ config :sentry,
 config :ret, Ret.Habitat, ip: "127.0.0.1", http_port: 9631
 
 config :ret, Ret.JanusLoadStatus, default_janus_host: dev_janus_host, janus_port: 4443
+
 config :ret, Ret.RoomAssigner, balancer_weights: [{600, 1}, {300, 50}, {0, 500}]
 
 config :ret, RetWeb.PageController,

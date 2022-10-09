@@ -180,6 +180,7 @@ async function fetchAppConfigAndEnvironmentVars() {
   const { shortlink_domain, thumbnail_server } = hubsConfigs.general;
 
   const localIp = process.env.HOST_IP || (await internalIp.v4()) || "localhost";
+  console.log(localIp)
 
   process.env.RETICULUM_SERVER = host;
   process.env.SHORTLINK_DOMAIN = shortlink_domain;
@@ -328,7 +329,7 @@ module.exports = async (env, argv) => {
           { from: /^\/whats-new/, to: "/whats-new.html" }
         ]
       },
-      before: function(app) {
+      before: function (app) {
         // Local CORS proxy
         app.all("/cors-proxy/*", (req, res) => {
           res.header("Access-Control-Allow-Origin", "*");
@@ -363,7 +364,7 @@ module.exports = async (env, argv) => {
         // be flexible with people accessing via a local reticulum on another port
         app.use(cors({ origin: /hubs\.local(:\d*)?$/ }));
         // networked-aframe makes HEAD requests to the server for time syncing. Respond with an empty body.
-        app.head("*", function(req, res, next) {
+        app.head("*", function (req, res, next) {
           if (req.method === "HEAD") {
             res.append("Date", new Date().toGMTString());
             res.send("");
