@@ -1395,16 +1395,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  const myChannel = socket.channel(`my:test`, APP.hubChannelParamsForPermsToken(oauthFlowPermsToken));
-  myChannel.join().receive("ok", resp => {
-    myChannel.push("new_msg", { body: 'test' });
-  });
-
-  myChannel.on("new_msg", event => {
-    console.log(event);
-  });
-
-
   authChannel.setSocket(socket);
   linkChannel.setSocket(socket);
+
+
+
+  // add directmessage test
+  const myChannel = socket.channel(`my:test`, APP.hubChannelParamsForPermsToken(oauthFlowPermsToken));
+  myChannel.join().receive("ok", resp => {
+    myChannel.push("direct_message", { body: 'test', type: 'chat' });
+  });
+
+  myChannel.on("direct_message", event => {
+    console.log(event);
+  });
 });
